@@ -5,13 +5,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const connection = require("./connection");
 const routes = require("./routes");
+const cors = require("cors");
+
 const { createTables } = require("./tables");
 
 const app = express();
 const PORT = process.env.PORT || 4040;
 
 app.use(bodyParser.json());
-
+app.use(cors());
 app.use("/", routes);
 app.get("/", (req, res) => {
   res.status(200).json({
